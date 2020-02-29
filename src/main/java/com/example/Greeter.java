@@ -6,9 +6,15 @@ import akka.actor.typed.javadsl.*;
 
 import java.util.Objects;
 
-// #greeter
 public class Greeter extends AbstractBehavior<Greeter.Greet> {
 
+  private Greeter(ActorContext<Greet> context) {
+    super(context);
+  }
+
+  /**
+   * Send Message Type
+   */
   public static final class Greet {
     public final String whom;
     public final ActorRef<Greeted> replyTo;
@@ -19,6 +25,9 @@ public class Greeter extends AbstractBehavior<Greeter.Greet> {
     }
   }
 
+  /**
+   * Received Message Type
+   */
   public static final class Greeted {
     public final String whom;
     public final ActorRef<Greet> from;
@@ -28,7 +37,6 @@ public class Greeter extends AbstractBehavior<Greeter.Greet> {
       this.from = from;
     }
 
-// #greeter
     @Override
     public boolean equals(Object o) {
       if (this == o) return true;
@@ -50,22 +58,33 @@ public class Greeter extends AbstractBehavior<Greeter.Greet> {
               ", from=" + from +
               '}';
     }
-// #greeter
   }
 
+  /**
+   * Define Behavior
+   *
+   * @return
+   */
   public static Behavior<Greet> create() {
     return Behaviors.setup(Greeter::new);
   }
 
-  private Greeter(ActorContext<Greet> context) {
-    super(context);
-  }
-
+  /**
+   * Message handler
+   *
+   * @return
+   */
   @Override
   public Receive<Greet> createReceive() {
     return newReceiveBuilder().onMessage(Greet.class, this::onGreet).build();
   }
 
+  /**
+   * Message handler private
+   *
+   * @param command
+   * @return
+   */
   private Behavior<Greet> onGreet(Greet command) {
     getContext().getLog().info("Hello {}!", command.whom);
     //#greeter-send-message
@@ -74,5 +93,5 @@ public class Greeter extends AbstractBehavior<Greeter.Greet> {
     return this;
   }
 }
-// #greeter
+
 

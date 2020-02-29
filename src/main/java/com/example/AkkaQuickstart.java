@@ -6,7 +6,8 @@ import java.io.IOException;
 public class AkkaQuickstart {
   public static void main(String[] args) {
     //#actor-system
-    final ActorSystem<GreeterMain.SayHello> greeterMain = ActorSystem.create(GreeterMain.create(), "helloakka");
+    final ActorSystem<GreeterMain.SayHello> greeterMain
+        = ActorSystem.create(GreeterMain.create(), "helloakka");
     //#actor-system
 
     //#main-send-messages

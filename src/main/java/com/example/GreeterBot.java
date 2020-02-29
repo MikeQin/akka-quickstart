@@ -5,16 +5,22 @@ import akka.actor.typed.javadsl.*;
 
 public class GreeterBot extends AbstractBehavior<Greeter.Greeted> {
 
-    public static Behavior<Greeter.Greeted> create(int max) {
-        return Behaviors.setup(context -> new GreeterBot(context, max));
-    }
-
     private final int max;
     private int greetingCounter;
 
     private GreeterBot(ActorContext<Greeter.Greeted> context, int max) {
         super(context);
         this.max = max;
+    }
+
+    /**
+     * Define Behavior
+     *
+     * @param max
+     * @return
+     */
+    public static Behavior<Greeter.Greeted> create(int max) {
+        return Behaviors.setup(context -> new GreeterBot(context, max));
     }
 
     @Override

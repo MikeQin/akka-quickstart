@@ -15,6 +15,9 @@ public class GreeterMain extends AbstractBehavior<GreeterMain.SayHello> {
         //#create-actors
     }
 
+    /**
+     * Send Message Type
+     */
     public static class SayHello {
         public final String name;
         public SayHello(String name) {
@@ -22,15 +25,29 @@ public class GreeterMain extends AbstractBehavior<GreeterMain.SayHello> {
         }
     }
 
+    /**
+     * Define Behavior
+     *
+     * @return
+     */
     public static Behavior<SayHello> create() {
         return Behaviors.setup(GreeterMain::new);
     }
 
+    /**
+     * Message handler
+     * @return
+     */
     @Override
     public Receive<SayHello> createReceive() {
         return newReceiveBuilder().onMessage(SayHello.class, this::onSayHello).build();
     }
 
+    /**
+     * Message handler private
+     * @param command
+     * @return
+     */
     private Behavior<SayHello> onSayHello(SayHello command) {
         //#create-actors
         ActorRef<Greeter.Greeted> replyTo =
