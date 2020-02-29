@@ -36,7 +36,7 @@ number of messages have been reached.
 
 - GreeterMain: The guardian actor that bootstraps everything.
 
-## Defining Actors and messages
+## Defining Actors and Message Types
 
 Each actor defines a type T for the messages it can receive. Case classes and 
 case objects make excellent messages since they are immutable and have support 
