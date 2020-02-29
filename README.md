@@ -15,12 +15,23 @@ and hopefully inspire you to dive deeper into the wonderful sea of Akka!
 
 ### Gradle
 
+Run:
 ```shell
 gradle run
 ```
 
 ### Maven
 
+If Java version is not 11, set it to Java 11:
+```bash
+# On Windows
+set PATH=%JAVA_HOME%\bin;%PATH%
+
+# Linux
+export PATH=$JAVA_HOME/bin:$PATH
+```
+
+Run:
 ```shell
 mvn compile exec:exec
 ```
