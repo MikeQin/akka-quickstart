@@ -187,7 +187,7 @@ public class GreeterBot extends AbstractBehavior<Greeter.Greeted> {
 }
 ```
 
-### The Greeter main actor
+### The GreeterMain Actor
 A third actor spawns the Greeter and the GreeterBot and starts the interaction, 
 creating actors and what spawn does is discussed next.
 
